@@ -203,7 +203,7 @@ function SuperAdminPage() {
       const data = await response.json();
 
       if (data.status === 'success') {
-        setSuccess(`✓ User "${createForm.username}" created successfully!`);
+        setSuccess(`User "${createForm.username}" created successfully!`);
         setCreateForm({
           username: '',
           email: '',
@@ -215,10 +215,10 @@ function SuperAdminPage() {
         setShowCreateForm(false);
         await loadUsers();
       } else {
-        setError('❌ ' + (data.message || 'Failed to create user'));
+        setError((data.message || 'Failed to create user'));
       }
     } catch (err) {
-      setError('❌ Network error: ' + err.message);
+      setError('Network error: ' + err.message);
     } finally {
       setLoading(false);
     }
@@ -247,15 +247,15 @@ function SuperAdminPage() {
       const data = await response.json();
 
       if (data.status === 'success') {
-        setSuccess(`✓ User updated successfully!`);
+        setSuccess(`User updated successfully!`);
         setEditForm(null);
         setSelectedUser(null);
         await loadUsers();
       } else {
-        setError('❌ ' + (data.message || 'Failed to update user'));
+        setError((data.message || 'Failed to update user'));
       }
     } catch (err) {
-      setError('❌ Network error: ' + err.message);
+      setError('Network error: ' + err.message);
     } finally {
       setLoading(false);
     }
@@ -282,14 +282,14 @@ function SuperAdminPage() {
       const data = await response.json();
 
       if (data.status === 'success') {
-        setSuccess(`✓ User deleted successfully!`);
+        setSuccess(`User deleted successfully!`);
         setSelectedUser(null);
         await loadUsers();
       } else {
-        setError('❌ ' + (data.message || 'Failed to delete user'));
+        setError((data.message || 'Failed to delete user'));
       }
     } catch (err) {
-      setError('❌ Network error: ' + err.message);
+      setError('Network error: ' + err.message);
     } finally {
       setLoading(false);
     }
@@ -324,20 +324,20 @@ function SuperAdminPage() {
       const data = await response.json();
 
       if (data.success) {
-        setSuccess(`✓ Capability ${shouldGrant ? 'granted' : 'revoked'}!`);
+        setSuccess(`Capability ${shouldGrant ? 'granted' : 'revoked'}!`);
         await loadUserCapabilities(selectedUserForCapabilities.id);
       } else {
-        setError('❌ ' + (data.message || data.error || 'Failed to update capability'));
+        setError((data.message || data.error || 'Failed to update capability'));
       }
     } catch (err) {
-      setError('❌ Network error: ' + err.message);
+      setError('Network error: ' + err.message);
     }
   };
 
   /* ============ UI HELPERS ============ */
 
   const getRoleLabel = (roleId) => {
-    const roles = { 1: '👑 SuperAdmin', 2: '👤 Admin', 3: '👥 Employee' };
+    const roles = { 1: 'SuperAdmin', 2: 'Admin', 3: 'Employee' };
     return roles[roleId] || 'Unknown';
   };
 
@@ -355,7 +355,7 @@ function SuperAdminPage() {
     return (
       <div className={styles.container}>
         <div className={styles.accessDenied}>
-          <h2>🔒 Access Denied</h2>
+          <h2>Access Denied</h2>
           <p>This page is for SuperAdmins only.</p>
           <button onClick={() => navigate('/dashboard')} className={styles.btn}>
             Return to Dashboard
@@ -370,7 +370,7 @@ function SuperAdminPage() {
       {/* Header */}
       <div className={styles.header}>
         <div>
-          <h1 className={styles.title}>👑 SuperAdmin Dashboard</h1>
+          <h1 className={styles.title}>SuperAdmin Dashboard</h1>
           <p className={styles.subtitle}>System administration & management</p>
         </div>
         <button className={styles.logoutBtn} onClick={handleLogout}>
@@ -382,13 +382,13 @@ function SuperAdminPage() {
       {error && (
         <div className={styles.alert} style={{ borderColor: '#e74c3c' }}>
           {error}
-          <button onClick={() => setError('')} className={styles.closeAlert}>×</button>
+          <button onClick={() => setError('')} className={styles.closeAlert}>Close</button>
         </div>
       )}
       {success && (
         <div className={styles.alert} style={{ borderColor: '#27ae60' }}>
           {success}
-          <button onClick={() => setSuccess('')} className={styles.closeAlert}>×</button>
+          <button onClick={() => setSuccess('')} className={styles.closeAlert}>Close</button>
         </div>
       )}
 
@@ -398,13 +398,13 @@ function SuperAdminPage() {
           className={`${styles.tab} ${activeTab === 'users' ? styles.active : ''}`}
           onClick={() => setActiveTab('users')}
         >
-          👥 User Management
+          User Management
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'capabilities' ? styles.active : ''}`}
           onClick={() => setActiveTab('capabilities')}
         >
-          🔐 Capabilities
+          Capabilities
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'audit-logs' ? styles.active : ''}`}
@@ -607,7 +607,7 @@ function SuperAdminPage() {
                       onClick={() => setEditForm(null)}
                       className={styles.closeModal}
                     >
-                      ×
+                      Close
                     </button>
                   </div>
 
