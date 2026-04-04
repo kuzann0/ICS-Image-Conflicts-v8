@@ -28,7 +28,7 @@ function Header() {
           </div>
 
           <button className={styles.logoutBtn} onClick={handleLogout} title="Logout">
-            🚪 Logout
+            Logout
           </button>
         </div>
       </div>

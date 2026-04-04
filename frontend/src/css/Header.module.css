@@ -2,6 +2,14 @@
   font-family: var(--font-family-primary);
 }
 
+
+.headerContent, .userSection, .avatar,.userName, .userRole, .logoutBtn, .title, .subtitle {
+  color: var(--color-text-light);
+}
+
+
+
+
 .headerContainer {
   background: var(--color-primary);
   color: var(--color-text-light);
@@ -12,6 +20,7 @@
 }
 
 .headerContent {
+
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--spacing-lg) var(--spacing-5xl);
@@ -49,6 +58,7 @@
 
 /* User Section */
 .userSection {
+  color:  var(--color-text-light);
   display: flex;
   align-items: center;
   gap: var(--spacing-xl);

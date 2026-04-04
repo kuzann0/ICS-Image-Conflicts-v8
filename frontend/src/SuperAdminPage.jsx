@@ -410,7 +410,7 @@ function SuperAdminPage() {
           className={`${styles.tab} ${activeTab === 'audit-logs' ? styles.active : ''}`}
           onClick={() => setActiveTab('audit-logs')}
         >
-          📋 Audit Logs
+          Audit Logs
         </button>
       </div>
 
@@ -538,7 +538,7 @@ function SuperAdminPage() {
                   onClick={loadUsers}
                   disabled={loading}
                 >
-                  🔄 Refresh
+                   Refresh
                 </button>
               </div>
 
