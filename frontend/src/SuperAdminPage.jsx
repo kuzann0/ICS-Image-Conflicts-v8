@@ -48,7 +48,7 @@ function SuperAdminPage() {
   // Initialize
   useEffect(() => {
     if (roleId !== 1) {
-      setError('❌ Access Denied: SuperAdmin only');
+      setError('Access Denied: SuperAdmin only');
       return;
     }
     loadAllData();

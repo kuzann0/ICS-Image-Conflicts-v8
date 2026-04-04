@@ -125,8 +125,8 @@ function ViewEntries() {
   };
 
   const SortIcon = ({ column }) => {
-    if (sortConfig.key !== column) return <span> ↕</span>;
-    return sortConfig.direction === "asc" ? <span> ↑</span> : <span> ↓</span>;
+    if (sortConfig.key !== column) return null;
+    return sortConfig.direction === "asc" ? <span></span> : <span></span>;
   };
 
   return (
@@ -139,7 +139,7 @@ function ViewEntries() {
             <p>{sortedEntries.length} items total</p>
           </div>
           <button className={styles.exportBtn} onClick={handleExport} title="Export to CSV">
-            📥 Export Data
+            Export Data
           </button>
         </div>
 
@@ -147,7 +147,7 @@ function ViewEntries() {
         <div className={styles.searchContainer}>
           <input
             type="text"
-            placeholder="🔍 Search by item name, serial no, inventory no, location..."
+            placeholder="Search by item name, serial no, inventory no, location..."
             value={searchTerm}
             onChange={handleSearch}
             className={styles.searchInput}
@@ -237,7 +237,7 @@ function ViewEntries() {
                   disabled={currentPage === 1}
                   className={styles.paginationBtn}
                 >
-                  ← Previous
+                  Previous
                 </button>
 
                 <div className={styles.pageNumbers}>
@@ -259,7 +259,7 @@ function ViewEntries() {
                   disabled={currentPage === totalPages}
                   className={styles.paginationBtn}
                 >
-                  Next →
+                  Next
                 </button>
 
                 <span className={styles.pageInfo}>

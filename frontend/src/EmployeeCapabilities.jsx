@@ -86,12 +86,12 @@ export default function EmployeeCapabilities() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>🔐 My Capabilities</h1>
+        <h1>My Capabilities</h1>
         <p className={styles.subtitle}>
           View your access permissions and capabilities
         </p>
         <div className={styles.userInfo}>
-          <span>👤 {username}</span>
+          <span>{username}</span>
           <span className={styles.roleTag}>Employee</span>
         </div>
       </div>
@@ -139,12 +139,12 @@ export default function EmployeeCapabilities() {
               <div className={styles.categoryHeader}>
                 <span className={styles.categoryIcon}>
                   {category === 'INVENTORY' && '📦'}
-                  {category === 'ADMIN' && '⚙️'}
-                  {category === 'SYSTEM' && '🔧'}
-                  {category === 'USER' && '👤'}
+                  {category === 'ADMIN' && ''}
+                  {category === 'SYSTEM' && ''}
+                  {category === 'USER' && ''}
                   {!['INVENTORY', 'ADMIN', 'SYSTEM', 'USER'].includes(
                     category
-                  ) && '📋'}
+                  ) && ''}
                 </span>
                 <h2 className={styles.categoryTitle}>{category}</h2>
                 <span className={styles.capCount}>{caps.length}</span>

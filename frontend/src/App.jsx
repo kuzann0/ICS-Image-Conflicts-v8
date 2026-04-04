@@ -59,7 +59,7 @@ function SuperAdminRoute({ children }) {
   }
 
   if (!isSuperAdmin) {
-    console.warn('❌ Access denied: User role_id is not 1 (SuperAdmin only)');
+    console.warn('Access denied: User role_id is not 1 (SuperAdmin only)');
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -87,7 +87,7 @@ function AdminRoute({ children }) {
   }
 
   if (!isAdmin) {
-    console.warn('❌ Access denied: Admin role required (role_id 2)');
+    console.warn('Access denied: Admin role required (role_id 2)');
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -115,7 +115,7 @@ function EmployeeRoute({ children }) {
   }
 
   if (!isEmployee) {
-    console.warn('❌ Access denied: Employee role required (role_id 3)');
+    console.warn('Access denied: Employee role required (role_id 3)');
     return <Navigate to="/dashboard" replace />;
   }
 

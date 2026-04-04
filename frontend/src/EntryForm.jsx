@@ -70,11 +70,11 @@ function EntryForm({ onEntryAdded }) {
         if (result.message.includes("Duplicate entry")) {
           setError("⚠ This Serial No or Inventory Item No already exists. Please enter unique values.");
         } else {
-          setError("❌ Error: " + result.message);
+          setError("Error: " + result.message);
         }
       }
     } catch (err) {
-      setError("❌ Network error: " + err.message);
+      setError("Network error: " + err.message);
     }
   };
 

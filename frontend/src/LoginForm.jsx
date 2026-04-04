@@ -53,10 +53,10 @@ function LoginForm() {
       // role_id = 2 or 3: Admin/Employee → /dashboard
       setTimeout(() => {
         if (loginData.user.role_id === 1) {
-          console.log("🔐 SuperAdmin detected - redirecting to /superadmin");
+          console.log("SuperAdmin detected - redirecting to /superadmin");
           navigate("/superadmin");
         } else {
-          console.log(`👤 ${loginData.user.role_name} detected - redirecting to /dashboard`);
+          console.log(`${loginData.user.role_name} detected - redirecting to /dashboard`);
           navigate("/dashboard");
         }
       }, 300);

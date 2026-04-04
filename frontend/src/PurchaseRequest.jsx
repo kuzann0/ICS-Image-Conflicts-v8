@@ -493,7 +493,7 @@ function NewEntryPR() {
                                             if (currentIdx > 0) setCurrentStep(steps[currentIdx - 1]);
                                         }}
                                     >
-                                        ← Back
+                                        Back
                                     </button>
                                 )}
                             </div>
