@@ -1,0 +1,163 @@
+:root {
+     --primary-color: hsl(229, 75%, 28%);
+     --primary-hex: #12257d;
+     --secondary-color: hsl(228, 41%, 25%);
+
+     --default-color: hsl(0, 0%, 24%);
+     --approved-color: hsl(120, 62%, 24%);
+     --rejected-color: hsl(0, 65%, 24%);
+    
+}
+
+input {
+    font-size: 0.9rem;
+    font-weight:600;
+    letter-spacing: 1px;;
+    color: var(--primary-hex);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 10px;
+    width: 300px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid var(--secondary-color);
+}
+
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f7fa;
+}
+
+.foreGround {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.mainWrapper {
+    width: 100%;
+}
+
+.content {
+    padding: 20px;
+}
+
+.progressContainer {
+    margin-bottom: 20px;
+}
+
+.progressLine {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.element {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ddd;
+}
+
+.element:nth-child(1) {
+    background-color: var(--primary-color);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.statusContainer {
+    color: var(--approved-color);
+    font-weight: bold;
+}
+
+.formContainer {
+    margin-bottom: 20px;
+}
+
+.formContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formContainer span {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formContainer label {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.formContainer select {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--primary-hex);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 10px;
+    width: 300px;
+}
+
+.buttonContainer {
+    text-align: center;
+}
+
+.buttonWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nextBtn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.nextBtn:hover {
+    background-color: var(--secondary-color);
+}
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
