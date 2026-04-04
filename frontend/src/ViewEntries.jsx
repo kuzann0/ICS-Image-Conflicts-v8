@@ -271,7 +271,7 @@ function ViewEntries() {
           </>
         ) : (
           <div className={styles.noData}>
-            <p>📭 No entries found</p>
+            <p>No entries found</p>
             <p className={styles.noDataSubtext}>
               {searchTerm ? "Try adjusting your search filters" : "Start adding inventory items"}
             </p>
