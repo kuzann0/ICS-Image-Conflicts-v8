@@ -5,8 +5,8 @@
  */
 
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: POST, OPTIONS, GET");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -15,8 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 $input = json_decode(file_get_contents('php://input'), true) ?? [];
-$username = $input['username'] ?? '';
-$password = $input['password'] ?? '';
+$username = trim($input['username'] ?? '');
+$password = trim($input['password'] ?? '');
+
+// Debug logging
+error_log("LOGIN ATTEMPT: username='$username', password_length=" . strlen($password));
 
 if (empty($username) || empty($password)) {
     http_response_code(400);
@@ -37,10 +40,10 @@ try {
 
     // Query user with role details
     $stmt = $conn->prepare("
-        SELECT u.id, u.username, u.email, u.password_hash, u.role_id, ur.role_name, ur.permissions
+        SELECT u.id, u.username, u.email, u.password_hash, u.role_id, u.account_status, ur.role_name, ur.permissions
         FROM users u
         LEFT JOIN user_roles ur ON u.role_id = ur.id
-        WHERE u.username = ?
+        WHERE u.username = ? AND u.account_status = 'active'
     ");
     if (!$stmt) {
         throw new Exception('Query failed: ' . $conn->error);
@@ -51,6 +54,7 @@ try {
     $result = $stmt->get_result();
 
     if ($result->num_rows === 0) {
+        error_log("LOGIN FAILED: User '$username' not found or inactive");
         http_response_code(401);
         exit(json_encode(['status' => 'error', 'message' => 'Invalid credentials']));
     }
@@ -59,9 +63,12 @@ try {
     $stmt->close();
 
     if (!password_verify($password, $user['password_hash'])) {
+        error_log("LOGIN FAILED: Wrong password for user '$username'");
         http_response_code(401);
         exit(json_encode(['status' => 'error', 'message' => 'Invalid credentials']));
     }
+
+    error_log("LOGIN SUCCESS: User '$username' (ID: {$user['id']}, Role: {$user['role_name']}");
 
     $token = bin2hex(random_bytes(32));
     $roleId = (int)$user['role_id'];
