@@ -12,16 +12,25 @@ import collapseIcon from './assets/collapse_btn.png';
 function Navbar() {
     const [collapsed, setCollapsed] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activePanel, setActivePanel] = useState(null);
     const navigate = useNavigate();
 
     const navItems = [
-        { icon: dashboardIcon, label: "Dashboard", title: "View Dashboard" },
-        { icon: dataIcon, label: "Data Management", title: "Manage Data" },
-        { icon: auditIcon, label: "Audit Logs", title: "View Audit Logs" },
-        { icon: historyIcon, label: "History", title: "View History" },
+        { icon: dashboardIcon, label: "Dashboard", title: "View Dashboard", id: "dashboard" },
+        { icon: dataIcon, label: "Data Management", title: "Manage Data", id: "dataManagement" },
+        { icon: auditIcon, label: "Audit Logs", title: "View Audit Logs", id: "auditLogs" },
+        { icon: historyIcon, label: "History", title: "View History", id: "history" },
         { icon: addIcon, label: "Add Entry", title: "Add New Entry", id: "addEntry" },
-        { icon: settingsIcon, label: "Settings", title: "Settings" },
+        { icon: settingsIcon, label: "Settings", title: "Settings", id: "settings" },
     ];
+
+    const handlePanelClick = (panelId) => {
+        if (panelId === "addEntry") {
+            navigate('/new-purchase-request');
+        } else {
+            setActivePanel(activePanel === panelId ? null : panelId);
+        }
+    };
 
     return (
         <>
@@ -29,7 +38,11 @@ function Navbar() {
             <div className={`${styles.mainNav} ${collapsed ? styles.collapsed : ""}`}>
                 <div className={styles.navWrapper}>
                     {/* Profile Section */}
-                    <div className={styles.profileContainer}>
+                    <div 
+                        className={styles.profileContainer}
+                        onClick={() => setActivePanel(activePanel === "profile" ? null : "profile")}
+                        style={{ cursor: "pointer" }}
+                    >
                         <div className={styles.profileWrapper}>
                             <div className={styles.profileInitial}>
                                 {sessionStorage.getItem("username")?.charAt(0).toUpperCase() || "U"}
@@ -50,10 +63,10 @@ function Navbar() {
                                     {navItems.map((item, idx) => (
                                         <li key={idx} className={styles.navItem}>
                                             <button
-                                                className={`${styles.navButton} ${item.id === "addEntry" ? styles.addEntryBtn : ""}`}
+                                                className={`${styles.navButton} ${item.id === "addEntry" ? styles.addEntryBtn : ""} ${activePanel === item.id ? styles.active : ""}`}
                                                 title={item.title}
                                                 aria-label={item.label}
-                                                onClick={item.id === "addEntry" ? () => navigate('/new-purchase-request') : undefined}
+                                                onClick={() => handlePanelClick(item.id)}
                                             >
                                                 <img src={item.icon} alt={item.label} className={styles.icon} />
                                                 {!collapsed && <span className={styles.label}>{item.label}</span>}
@@ -67,6 +80,176 @@ function Navbar() {
                     </div>
                 </div>
 
+                {/* Panel Content Section */}
+                {activePanel && (
+                    <div className={styles.panelContentSection}>
+                        {activePanel === "profile" && (
+                            <div className={styles.panelContent}>
+                                <h2 className={styles.panelTitle}>Profile</h2>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.contentSection}>
+                                        <div className={styles.profileInfo}>
+                                            <div className={styles.profileAvatar}>
+                                                {sessionStorage.getItem("username")?.charAt(0).toUpperCase() || "U"}
+                                            </div>
+                                            <div className={styles.profileDetails}>
+                                                <p className={styles.profileField}>
+                                                    <span className={styles.fieldLabel}>Username:</span>
+                                                    <span>{sessionStorage.getItem("username") || "User"}</span>
+                                                </p>
+                                                <p className={styles.profileField}>
+                                                    <span className={styles.fieldLabel}>Role:</span>
+                                                    <span>{sessionStorage.getItem("role") || "User"}</span>
+                                                </p>
+                                                <p className={styles.profileField}>
+                                                    <span className={styles.fieldLabel}>Status:</span>
+                                                    <span className={styles.statusActive}>Active</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Actions</h3>
+                                        <div className={styles.actionList}>
+                                            <button className={styles.actionButton}>Edit Profile</button>
+                                            <button className={styles.actionButton}>Change Password</button>
+                                            <button className={styles.actionButton}>Logout</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {activePanel === "dashboard" && (
+                            <div className={styles.panelContent}>
+                                <h2 className={styles.panelTitle}>Dashboard</h2>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Overview</h3>
+                                        <div className={styles.metricGrid}>
+                                            <div className={styles.metricCard}>
+                                                <div className={styles.metricLabel}>Total Entries</div>
+                                                <div className={styles.metricValue}>—</div>
+                                            </div>
+                                            <div className={styles.metricCard}>
+                                                <div className={styles.metricLabel}>Pending</div>
+                                                <div className={styles.metricValue}>—</div>
+                                            </div>
+                                            <div className={styles.metricCard}>
+                                                <div className={styles.metricLabel}>Completed</div>
+                                                <div className={styles.metricValue}>—</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Performance</h3>
+                                        <div className={styles.performanceList}>
+                                            <p className={styles.performanceItem}>Average Processing Time</p>
+                                            <p className={styles.performanceItem}>System Status: Operational</p>
+                                            <p className={styles.performanceItem}>Last Updated: Today</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activePanel === "dataManagement" && (
+                            <div className={styles.panelContent}>
+                                <h2 className={styles.panelTitle}>Data Management</h2>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Operations</h3>
+                                        <div className={styles.actionList}>
+                                            <button className={styles.actionButton}>Create New Entry</button>
+                                            <button className={styles.actionButton}>View All Entries</button>
+                                            <button className={styles.actionButton}>Export Data</button>
+                                        </div>
+                                    </div>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Recent Entries</h3>
+                                        <div className={styles.tablePreview}>
+                                            <div className={styles.tableHeader}>
+                                                <span>Entry ID</span>
+                                                <span>Status</span>
+                                                <span>Date</span>
+                                            </div>
+                                            <div className={styles.tableRow}>
+                                                <span>—</span>
+                                                <span>—</span>
+                                                <span>—</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activePanel === "auditLogs" && (
+                            <div className={styles.panelContent}>
+                                <h2 className={styles.panelTitle}>Audit Logs</h2>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Transaction Tracking</h3>
+                                        <div className={styles.logList}>
+                                            <div className={styles.logItem}>
+                                                <span className={styles.logTime}>Time</span>
+                                                <span className={styles.logAction}>Action</span>
+                                                <span className={styles.logUser}>User</span>
+                                            </div>
+                                            <div className={styles.logItem}>
+                                                <span className={styles.logTime}>—</span>
+                                                <span className={styles.logAction}>—</span>
+                                                <span className={styles.logUser}>—</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Details</h3>
+                                        <p className={styles.logInfo}>Monitor all system transactions, user actions, and important activities in real-time.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activePanel === "history" && (
+                            <div className={styles.panelContent}>
+                                <h2 className={styles.panelTitle}>History</h2>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.contentSection}>
+                                        <h3 className={styles.sectionTitle}>Transaction History</h3>
+                                        <div className={styles.historyList}>
+                                            <div className={styles.historyItem}>
+                                                <div className={styles.historyDate}>Date</div>
+                                                <div className={styles.historyDesc}>Description</div>
+                                                <div className={styles.historyStatus}>Status</div>
+                                            </div>
+                                            <div className={styles.historyItem}>
+                                                <div className={styles.historyDate}>—</div>
+                                                <div className={styles.historyDesc}>—</div>
+                                                <div className={styles.historyStatus}>—</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.contentSection}>
+                                        <p className={styles.historyInfo}>Complete record of all past transactions and activities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activePanel === "settings" && (
+                            <div className={styles.panelContent}>
+                                <h2 className={styles.panelTitle}>Settings</h2>
+                                <div className={styles.panelBody}>
+                                    <div className={styles.contentSection}>
+                                        <div className={styles.wip}>
+                                            <p className={styles.wipText}>Work in Progress</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
                 {/* Collapse Button */}
                 <div className={styles.collapseBtnContainer}>
                     <button
