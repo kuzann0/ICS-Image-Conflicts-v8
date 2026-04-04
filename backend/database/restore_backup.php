@@ -101,9 +101,16 @@ try {
     ];
 
     foreach ($usersData as $user) {
+        list($id, $username, $email, $hash, $role_id, $status, $is_superadmin) = $user;
         $stmt = $conn->prepare("INSERT INTO users (id, username, email, password_hash, role_id, account_status, is_superadmin) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param('isssiis', ...$user);
-        $stmt->execute();
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
+        }
+        $stmt->bind_param('isssisi', $id, $username, $email, $hash, $role_id, $status, $is_superadmin);
+        if (!$stmt->execute()) {
+            throw new Exception("Insert failed for user $username: " . $stmt->error);
+        }
+        $stmt->close();
     }
     echo "✓ Inserted users\n";
 
