@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./css/ViewEntries.module.css";
+import API_BASE_URL from "./config/api";
 
 function ViewEntries() {
   const [entries, setEntries] = useState([]);
@@ -9,7 +10,10 @@ function ViewEntries() {
   const itemsPerPage = 10;
 
   const fetchEntries = () => {
-    fetch("/get_entries.php")
+    fetch(`${API_BASE_URL}/get_entries.php`, {
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' }
+    })
       .then((res) => res.json())
       .then((data) => {
         const entriesArray = Array.isArray(data) ? data : [];

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from './config/api';
 
 const InspectionAssignment = () => {
   const [assignments, setAssignments] = useState([]);
@@ -15,7 +16,9 @@ const InspectionAssignment = () => {
   const fetchAssignments = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/get_inspection_assignments.php');
+      const response = await fetch(`${API_BASE_URL}/get_inspection_assignments.php`, {
+        credentials: 'include'
+      });
       if (response.ok) {
         const data = await response.json();
         setAssignments(data.assignments || []);
@@ -37,8 +40,9 @@ const InspectionAssignment = () => {
     }
 
     try {
-      const response = await fetch('/submit_inspection.php', {
+      const response = await fetch(`${API_BASE_URL}/submit_inspection.php`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           assignment_id: assignmentId,

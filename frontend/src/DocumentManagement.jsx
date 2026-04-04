@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_BASE_URL from './config/api';
 
 const DocumentManagement = () => {
   const [documents, setDocuments] = useState([]);
@@ -19,7 +20,9 @@ const DocumentManagement = () => {
   const fetchDocuments = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/get_documents.php');
+      const response = await fetch(`${API_BASE_URL}/get_documents.php`, {
+        credentials: 'include'
+      });
       if (response.ok) {
         const data = await response.json();
         setDocuments(data.documents || []);
@@ -56,8 +59,9 @@ const DocumentManagement = () => {
     uploadData.append('file', formData.file);
 
     try {
-      const response = await fetch('/upload_document.php', {
+      const response = await fetch(`${API_BASE_URL}/upload_document.php`, {
         method: 'POST',
+        credentials: 'include',
         body: uploadData
       });
 
@@ -83,7 +87,9 @@ const DocumentManagement = () => {
 
   const handleDownloadDocument = async (documentId) => {
     try {
-      const response = await fetch(`/download_document.php?document_id=${documentId}`);
+      const response = await fetch(`${API_BASE_URL}/download_document.php?document_id=${documentId}`, {
+        credentials: 'include'
+      });
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);

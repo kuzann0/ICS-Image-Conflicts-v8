@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./css/EntryForm.module.css";
+import API_BASE_URL from "./config/api";
 
 function EntryForm({ onEntryAdded }) {
   const [formData, setFormData] = useState({
@@ -37,8 +38,9 @@ function EntryForm({ onEntryAdded }) {
     }
 
     try {
-      const response = await fetch("/submit.php", {
+      const response = await fetch(`${API_BASE_URL}/submit.php`, {
         method: "POST",
+        credentials: 'include',
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData),
       });
@@ -164,7 +166,6 @@ function EntryForm({ onEntryAdded }) {
                   name="Unit"
                   value={formData.Unit}
                   onChange={handleChange}
-                  defaultValue=""
                 >
                   <option value="">Select unit</option>
                   <option value="piece">Piece</option>

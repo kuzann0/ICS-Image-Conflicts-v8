@@ -1,28 +1,25 @@
 :root {
-     --primary-color: hsl(229, 75%, 28%);
-     --primary-hex: #12257d;
-     --secondary-color: hsl(228, 41%, 25%);
-
-     --default-color: hsl(0, 0%, 24%);
-     --approved-color: hsl(120, 62%, 24%);
-     --rejected-color: hsl(0, 65%, 24%);
-    
+     --primary-color: var(--color-primary);
+     --secondary-color: var(--color-primary-alpha-10);
+     --default-color: var(--color-text-primary);
+     --approved-color: var(--color-approved);
+     --rejected-color: var(--color-rejected);
 }
 
 input {
     font-size: 0.9rem;
-    font-weight:600;
-    letter-spacing: 1px;;
-    color: var(--primary-hex);
-    border: 2px solid var(--secondary-color);
-    border-radius: 8px;
-    padding: 10px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary-alpha-10);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-base);
     width: 300px;
 }
 
 input:focus {
     outline: none;
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--color-primary-alpha-10);
 }
 
 .mainContainer {
@@ -30,14 +27,14 @@ input:focus {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f5f7fa;
+    background-color: var(--color-background);
 }
 
 .foreGround {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-base);
+    padding: var(--spacing-xl);
     width: 90%;
     max-width: 800px;
 }
@@ -47,24 +44,24 @@ input:focus {
 }
 
 .content {
-    padding: 20px;
+    padding: var(--spacing-xl);
 }
 
 .progressContainer {
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-xl);
 }
 
 .progressLine {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: var(--spacing-lg);
 }
 
 .element {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #ddd;
+    background-color: var(--color-gray-300);
 }
 
 .element:nth-child(1) {
@@ -73,11 +70,11 @@ input:focus {
 
 .header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-xl);
 }
 
 .header h1 {
-    color: var(--primary-color);
+    color: var(--color-primary);
     margin: 0;
 }
 
@@ -93,28 +90,28 @@ input:focus {
 .formContainer form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: var(--spacing-xl);
 }
 
 .formContainer span {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--spacing-sm);
 }
 
 .formContainer label {
-    font-weight: bold;
-    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
 }
 
 .formContainer select {
     font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--primary-hex);
-    border: 2px solid var(--secondary-color);
-    border-radius: 8px;
-    padding: 10px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary-alpha-10);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-base);
     width: 300px;
 }
 
@@ -125,39 +122,39 @@ input:focus {
 .buttonWrapper {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: var(--spacing-lg);
 }
 
 .nextBtn {
-    background-color: var(--primary-color);
+    background-color: var(--color-primary);
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-base) var(--spacing-lg);
     font-size: 1rem;
     cursor: pointer;
 }
 
 .nextBtn:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--color-primary-light);
 }
 
 .message {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 5px;
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-base);
     text-align: center;
-    font-weight: bold;
+    font-weight: var(--font-weight-semibold);
 }
 
 .message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
+    border: 1px solid var(--color-success);
 }
 
 .message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-text);
+    border: 1px solid var(--color-danger);
 }

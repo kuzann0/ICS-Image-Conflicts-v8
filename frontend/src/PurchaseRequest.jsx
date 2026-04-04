@@ -31,6 +31,15 @@ function NewEntryPR() {
     // PR ID for database persistence
     const [prId, setPrId] = useState(null);
 
+    // Initialize PR Name from modal (if coming from NewPurchaseRequest)
+    useEffect(() => {
+        const newPrName = sessionStorage.getItem('new_pr_name');
+        if (newPrName) {
+            setPrNo(newPrName);
+            sessionStorage.removeItem('new_pr_name'); // Clear after use
+        }
+    }, []);
+
     // Step indicators
     const stepLabels = {
         create: '1. Create PR',
@@ -371,9 +380,9 @@ function NewEntryPR() {
                                     <span>Item No.: <input type="text" placeholder="Item No." value={itemNo} onChange={(e) => setItemNo(e.target.value)} /></span>
                                     <span>Unit: <input type="text" placeholder="unit" value={unit} onChange={(e) => setUnit(e.target.value)} /></span>
                                     <span>Item Description: <input type="text" placeholder="Item Description" value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} /></span>
-                                    <span>Quantity: <input type="number" placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(parseFloat(e.target.value))}/></span>
-                                    <span>Unit Cost: <input type="number" placeholder="Unit Cost" value={unitCost} onChange={(e) => setUnitCost(parseFloat(e.target.value))} /></span>
-                                    <span>Total: <input type="number" placeholder="Total" value={product} disabled /></span>
+                                    <span>Quantity: <input type="number" placeholder="Quantity" value={quantity || ''} onChange={(e) => setQuantity(e.target.value ? parseFloat(e.target.value) : 0)}/></span>
+                                    <span>Unit Cost: <input type="number" placeholder="Unit Cost" value={unitCost || ''} onChange={(e) => setUnitCost(e.target.value ? parseFloat(e.target.value) : 0)} /></span>
+                                    <span>Total: <input type="number" placeholder="Total" value={product || 0} disabled /></span>
                                     <button className={styles.nextBtn} type="submit" disabled={isSubmitting}>
                                         {isSubmitting ? 'Creating...' : 'Create PR'}
                                     </button>

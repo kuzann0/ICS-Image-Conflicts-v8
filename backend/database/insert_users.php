@@ -1,4 +1,4 @@
-<?php
+w<?php
 /**
  * Insert users back into database
  */

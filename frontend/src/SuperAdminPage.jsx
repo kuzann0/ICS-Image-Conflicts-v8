@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './css/SuperAdminPage.module.css';
+import API_BASE_URL from './config/api';
 
 /**
  * Enhanced SuperAdminPage
@@ -76,7 +77,9 @@ function SuperAdminPage() {
   const loadUsers = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/get_all_users.php');
+      const response = await fetch(`${API_BASE_URL}/get_all_users.php`, {
+        credentials: 'include'
+      });
       const data = await response.json();
 
       if (data.success) {
@@ -97,7 +100,8 @@ function SuperAdminPage() {
     try {
       setLoading(true);
       const response = await fetch(
-        `/get_capabilities.php?requester_role_id=${roleId}`
+        `${API_BASE_URL}/get_capabilities.php?requester_role_id=${roleId}`,
+        { credentials: 'include' }
       );
       const data = await response.json();
 
@@ -116,7 +120,9 @@ function SuperAdminPage() {
   const loadAuditLogs = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/get_audit_logs.php');
+      const response = await fetch(`${API_BASE_URL}/get_audit_logs.php`, {
+        credentials: 'include'
+      });
       const data = await response.json();
 
       if (data.success) {
@@ -134,7 +140,8 @@ function SuperAdminPage() {
   const loadUserCapabilities = async (userId) => {
     try {
       const response = await fetch(
-        `/get_user_capabilities.php?user_id=${userId}`
+        `${API_BASE_URL}/get_user_capabilities.php?user_id=${userId}`,
+        { credentials: 'include' }
       );
       const data = await response.json();
 
@@ -179,8 +186,9 @@ function SuperAdminPage() {
 
     try {
       setLoading(true);
-      const response = await fetch('/create_user.php', {
+      const response = await fetch(`${API_BASE_URL}/create_user.php`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           actor_id: actorId,
@@ -223,8 +231,9 @@ function SuperAdminPage() {
 
     try {
       setLoading(true);
-      const response = await fetch('/update_user.php', {
+      const response = await fetch(`${API_BASE_URL}/update_user.php`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           actor_id: actorId,
@@ -260,8 +269,9 @@ function SuperAdminPage() {
 
     try {
       setLoading(true);
-      const response = await fetch('/delete_user.php', {
+      const response = await fetch(`${API_BASE_URL}/delete_user.php`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           actor_id: actorId,
@@ -299,8 +309,9 @@ function SuperAdminPage() {
     setSuccess('');
 
     try {
-      const response = await fetch('/grant_capability.php', {
+      const response = await fetch(`${API_BASE_URL}/grant_capability.php`, {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           actor_id: actorId,

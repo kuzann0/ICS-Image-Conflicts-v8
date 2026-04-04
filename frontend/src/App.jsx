@@ -9,6 +9,7 @@ import Connect from "./Connect";
 import Navbar from "./Navbar";
 import DashboardLayout from "./DashboardLayout";
 import PurchaseRequest from "./PurchaseRequest";
+import NewPurchaseRequest from "./NewPurchaseRequest";
 import InspectionAssignment from "./InspectionAssignment";
 import DocumentManagement from "./DocumentManagement";
 import ProcessStatus from "./ProcessStatus";
@@ -146,17 +147,22 @@ function App() {
             }
           />
 
-          {/* Purchase Request page */}
+          {/* New Purchase Request Modal - shows modal on dedicated page */}
+          <Route
+            path="/new-purchase-request"
+            element={
+              <ProtectedRoute>
+                <NewPurchaseRequest />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Purchase Request page - Dedicated standalone page */}
           <Route
             path="/purchase-request"
             element={
               <ProtectedRoute>
-                <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
-                    <PurchaseRequest />
-                  </DashboardLayout>
-                </div>
+                <PurchaseRequest />
               </ProtectedRoute>
             }
           />

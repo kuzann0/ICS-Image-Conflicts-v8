@@ -19,6 +19,7 @@ function LoginForm() {
       // Authenticate with backend
       const loginResponse = await fetch(`${API_BASE_URL}/login.php`, {
         method: "POST",
+        credentials: 'include',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
           username: username, 

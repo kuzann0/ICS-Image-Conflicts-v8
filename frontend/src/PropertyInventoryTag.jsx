@@ -38,7 +38,9 @@ const PropertyInventoryTag = () => {
 
   const fetchPRData = async (prno) => {
     try {
-      const response = await fetch(`/get_pr_details.php?pr_no=${prno}`);
+      const response = await fetch(`${API_BASE_URL}/get_pr_details.php?pr_no=${prno}`, {
+        credentials: 'include'
+      });
       if (response.ok) {
         const data = await response.json();
         setPrData(data);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from './config/api';
 
 const ProcessCompletionModal = ({ isOpen, prNo, onClose }) => {
   const navigate = useNavigate();
@@ -13,7 +14,9 @@ const ProcessCompletionModal = ({ isOpen, prNo, onClose }) => {
 
   const fetchProcessSummary = async (pr) => {
     try {
-      const response = await fetch(`/get_process_summary.php?pr_no=${pr}`);
+      const response = await fetch(`${API_BASE_URL}/get_process_summary.php?pr_no=${pr}`, {
+        credentials: 'include'
+      });
       if (response.ok) {
         const data = await response.json();
         setSummary(data);

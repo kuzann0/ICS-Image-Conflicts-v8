@@ -4,9 +4,15 @@
  * Simple, fast, reliable
  */
 
-header("Access-Control-Allow-Origin: *");
+// Start session BEFORE any headers sent
+session_start();
+
+// Enable CORS - Allow from any origin with credentials
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
+header('Access-Control-Allow-Origin: ' . $origin);
 header("Access-Control-Allow-Methods: POST, OPTIONS, GET");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -74,6 +80,14 @@ try {
     $roleId = (int)$user['role_id'];
     $roleName = $user['role_name'] ?? 'User'; // Fallback if role not found
     $permissions = json_decode($user['permissions'] ?? '[]', true);
+    
+    // SET SESSION VARIABLES
+    $_SESSION['user_id'] = (int)$user['id'];
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['role_id'] = $roleId;
+    $_SESSION['role_name'] = $roleName;
+    $_SESSION['permissions'] = $permissions;
 
     http_response_code(200);
     echo json_encode([

@@ -53,7 +53,7 @@ function Navbar() {
                                                 className={`${styles.navButton} ${item.id === "addEntry" ? styles.addEntryBtn : ""}`}
                                                 title={item.title}
                                                 aria-label={item.label}
-                                                onClick={item.id === "addEntry" ? () => navigate('/purchase-request') : undefined}
+                                                onClick={item.id === "addEntry" ? () => navigate('/new-purchase-request') : undefined}
                                             >
                                                 <img src={item.icon} alt={item.label} className={styles.icon} />
                                                 {!collapsed && <span className={styles.label}>{item.label}</span>}
