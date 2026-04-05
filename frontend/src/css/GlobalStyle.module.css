@@ -228,8 +228,8 @@
      ───────────────────────────────────────── */
   
   /* Navbar Dimensions */
-  --navbar-width-desktop: 140px;
-  --navbar-width-tablet: 90px;
+  --navbar-width-desktop: 220px;
+  --navbar-width-tablet: 110px;
   --navbar-height: 100%;
   --navbar-transition: all 0.3s ease;
 

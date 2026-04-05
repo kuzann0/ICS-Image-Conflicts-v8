@@ -30,7 +30,7 @@ body, html {
 }
 
 .mainNav.collapsed {
-  width: 80px;
+  width: 90px;
 }
 
 .navWrapper {
@@ -577,12 +577,12 @@ ul li {
 /* Responsive Design */
 @media (max-width: 1024px) {
   .mainNav {
-    width: 100px;
+    width: 110px;
     padding: 15px 0;
   }
 
   .mainNav.collapsed {
-    width: 60px;
+    width: 80px;
   }
 
   .label {
@@ -665,7 +665,7 @@ ul li {
 /* Tablet Navigation Optimization */
 @media (max-width: 1024px) and (min-width: 768px) {
   .mainNav {
-    width: 90px;
+    width: 110px;
   }
 
   .profileContainer {
