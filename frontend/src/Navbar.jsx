@@ -8,8 +8,7 @@ import historyIcon from './assets/history.svg';
 import addIcon from './assets/addEntry.svg';
 import settingsIcon from './assets/settings.svg';
 
-function Navbar({ activePanel, setActivePanel }) {
-    const [collapsed, setCollapsed] = useState(false);
+function Navbar({ activePanel, setActivePanel, collapsed = false, setCollapsed = () => {} }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
 

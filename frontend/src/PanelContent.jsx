@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from './css/Navbar.module.css';
 import API_BASE_URL from "./config/api";
 
-function PanelContent({ activePanel, setActivePanel }) {
+function PanelContent({ activePanel, setActivePanel, navbarCollapsed = false }) {
     const [dashboardStats, setDashboardStats] = useState({
         totalEntries: 0,
         pendingCount: 0,
@@ -59,7 +59,7 @@ function PanelContent({ activePanel, setActivePanel }) {
     }, [activePanel]);
 
     return (
-        <div className={styles.panelContentSection}>
+        <div className={`${styles.panelContentSection} ${navbarCollapsed ? styles.collapsed : ''}`}>
             {activePanel === "profile" && (
                 <div className={styles.panelContent}>
                     <h2 className={styles.panelTitle}>Profile</h2>

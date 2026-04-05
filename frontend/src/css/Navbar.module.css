@@ -694,12 +694,17 @@ ul li {
 /* Panel Content Styles */
 .panelContentSection {
   flex: 1;
-  margin-left: 120px;
+  margin-left: 220px;
   background: var(--color-secondary);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   animation: slideInRight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panelContentSection.collapsed {
+  margin-left: 90px;
 }
 
 @keyframes slideInRight {

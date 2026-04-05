@@ -125,6 +125,7 @@ function EmployeeRoute({ children }) {
 
 function App() {
   const [activePanel, setActivePanel] = useState("dashboard");
+  const [navbarCollapsed, setNavbarCollapsed] = useState(false);
 
   return (
     <>
@@ -140,8 +141,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar activePanel={activePanel} setActivePanel={setActivePanel} />
-                  <PanelContent activePanel={activePanel} setActivePanel={setActivePanel} />
+                  <Navbar activePanel={activePanel} setActivePanel={setActivePanel} collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <PanelContent activePanel={activePanel} setActivePanel={setActivePanel} navbarCollapsed={navbarCollapsed} />
                 </div>
               </ProtectedRoute>
             }
@@ -186,8 +187,8 @@ function App() {
               <ProtectedRoute>
                 <EmployeeRoute>
                   <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                    <Navbar />
-                    <DashboardLayout>
+                    <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                    <DashboardLayout navbarCollapsed={navbarCollapsed}>
                       <EmployeeCapabilities />
                     </DashboardLayout>
                   </div>
@@ -202,8 +203,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
+                  <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <DashboardLayout navbarCollapsed={navbarCollapsed}>
                     <div style={{ padding: '20px' }}>
                       <h2>Inventory Form - ICS (LESS: ₱ &lt; 50,000)</h2>
                       <p>LESS: ICS Inventory form for items under ₱50,000</p>
@@ -221,8 +222,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
+                  <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <DashboardLayout navbarCollapsed={navbarCollapsed}>
                     <div style={{ padding: '20px' }}>
                       <h2>Inventory Form - PPE (ABOVE: PAR ₱ ≥ 50,000)</h2>
                       <p>PPE Inventory form for fixed assets (₱50,000 and above)</p>
@@ -240,8 +241,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
+                  <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <DashboardLayout navbarCollapsed={navbarCollapsed}>
                     <PropertyInventoryTag />
                   </DashboardLayout>
                 </div>
@@ -255,8 +256,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
+                  <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <DashboardLayout navbarCollapsed={navbarCollapsed}>
                     <InspectionAssignment />
                   </DashboardLayout>
                 </div>
@@ -270,8 +271,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
+                  <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <DashboardLayout navbarCollapsed={navbarCollapsed}>
                     <DocumentManagement />
                   </DashboardLayout>
                 </div>
@@ -285,8 +286,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
+                  <Navbar collapsed={navbarCollapsed} setCollapsed={setNavbarCollapsed} />
+                  <DashboardLayout navbarCollapsed={navbarCollapsed}>
                     <ProcessStatus />
                   </DashboardLayout>
                 </div>

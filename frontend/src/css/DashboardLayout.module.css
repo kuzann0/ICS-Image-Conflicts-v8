@@ -6,6 +6,11 @@
   height: 100vh;
   overflow: hidden;
   background: var(--gradient-primary-subtle);
+  transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mainContent.collapsed {
+  margin-left: 90px;
 }
 
 .contentArea {
@@ -17,12 +22,17 @@
   width: 100%;
   margin: 0 auto;
   background-color: var(--color-gray-150);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Tablet Responsive */
 @media (max-width: 1024px) {
   .mainContent {
-    margin-left: 90px;
+    margin-left: 110px;
+  }
+
+  .mainContent.collapsed {
+    margin-left: 80px;
   }
 }
 
