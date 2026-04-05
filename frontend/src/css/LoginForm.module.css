@@ -101,8 +101,8 @@ button:disabled {
 }
 
 .imgContainer {
-    background-image: url('../assets/gifbg.gif');
-    /* background-image: url('../assets/imgTwo.png'); */
+    /* background-image: url('../assets/gifbg.gif'); */
+    background-image: url('../assets/imgTwo.png');
     background-size: cover;
     background-position: center;
     border-top-left-radius: var(--radius-2xl);

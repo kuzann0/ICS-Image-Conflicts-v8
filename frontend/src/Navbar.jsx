@@ -7,12 +7,16 @@ import auditIcon from './assets/audit.png';
 import historyIcon from './assets/history.svg';
 import addIcon from './assets/addEntry.svg';
 import settingsIcon from './assets/settings.svg';
-import collapseIcon from './assets/collapse_btn.png';
 
 function Navbar({ activePanel, setActivePanel }) {
     const [collapsed, setCollapsed] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        navigate('/');
+    };
 
     const navItems = [
         { icon: dashboardIcon, label: "Dashboard", title: "View Dashboard", id: "dashboard" },
@@ -81,15 +85,26 @@ function Navbar({ activePanel, setActivePanel }) {
                     </div>
                 </div>
 
-                {/* Collapse Button */}
-                <div className={styles.collapseBtnContainer}>
+                {/* Collapse Button with Arrow */}
+                <div className={styles.bottomControls}>
                     <button
-                        className={styles.collapseBtn}
+                        className={`${styles.collapseBtn} ${collapsed ? styles.collapsed : ""}`}
                         onClick={() => setCollapsed(!collapsed)}
-                        title={collapsed ? "Expand" : "Collapse"}
+                        title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
                         aria-label="Toggle sidebar"
                     >
-                        <img src={collapseIcon} alt="Toggle sidebar" className={styles.collapseBtnImg} />
+                        <span className={styles.arrow}></span>
+                    </button>
+
+                    {/* Logout Button */}
+                    <button
+                        className={styles.logoutBtn}
+                        onClick={handleLogout}
+                        title="Logout"
+                        aria-label="Logout"
+                    >
+                        <span className={styles.logoutIcon}>🚪</span>
+                        {!collapsed && <span className={styles.logoutLabel}>Logout</span>}
                     </button>
                 </div>
             </div>
@@ -132,6 +147,12 @@ function Navbar({ activePanel, setActivePanel }) {
                             </li>
                         ))}
                     </ul>
+                    <button
+                        className={styles.mobileLogoutBtn}
+                        onClick={handleLogout}
+                    >
+                        🚪 Logout
+                    </button>
                 </div>
             )}
         </>
