@@ -21,9 +21,13 @@ COPY . .
 EXPOSE 5173
 
 # Set environment for Vite dev server
-ENV VITE_API_URL=http://localhost:8080
+# These can be overridden by docker-compose environment variables
+ENV VITE_API_URL=http://127.0.0.1:3001
+ENV VITE_HMR_HOST=localhost
+ENV VITE_HMR_PORT=5173
+ENV VITE_HMR_PROTOCOL=ws
 
 # Start Vite development server
-# --host 0.0.0.0 allows connections from outside the container
+# --host 0.0.0.0 allows connections from outside the container (all interfaces)
 # --port 5173 uses the default Vite port
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]

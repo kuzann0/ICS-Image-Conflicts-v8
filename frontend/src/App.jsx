@@ -7,6 +7,7 @@ import SuperAdminPage from "./SuperAdminPage";
 import EmployeeCapabilities from "./EmployeeCapabilities";
 import Connect from "./Connect";
 import Navbar from "./Navbar";
+import PanelContent from "./PanelContent";
 import DashboardLayout from "./DashboardLayout";
 import PurchaseRequest from "./PurchaseRequest";
 import NewPurchaseRequest from "./NewPurchaseRequest";
@@ -123,6 +124,8 @@ function EmployeeRoute({ children }) {
 }
 
 function App() {
+  const [activePanel, setActivePanel] = useState("dashboard");
+
   return (
     <>
       <Connect /> {/* first thing react will read, to test connection */}
@@ -137,11 +140,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
-                  <Navbar />
-                  <DashboardLayout>
-                    <EntryForm />
-                    <ViewEntries />
-                  </DashboardLayout>
+                  <Navbar activePanel={activePanel} setActivePanel={setActivePanel} />
+                  <PanelContent activePanel={activePanel} setActivePanel={setActivePanel} />
                 </div>
               </ProtectedRoute>
             }

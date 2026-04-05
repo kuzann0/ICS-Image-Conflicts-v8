@@ -60,7 +60,7 @@ services:
     container_name: ics-backend
     restart: unless-stopped
     ports:
-      - "3000:80"
+      - "3001:80"
     volumes:
       # Mount backend code for live development
       - ./backend:/var/www/html
@@ -119,9 +119,9 @@ services:
     container_name: ics-frontend
     restart: unless-stopped
     ports:
-      # Port mapping: host port 5000 → container Vite port 5173
-      # Access at: http://localhost:5000 or http://ics.local:5000
-      - "5000:5173"
+      # Port mapping: host port 3000 → container Vite port 5173
+      # Access at: http://127.0.0.1:3000
+      - "3000:5173"
     volumes:
       # Mount frontend code for live reloading
       - ./frontend:/app
@@ -129,7 +129,10 @@ services:
       - /app/node_modules
     environment:
       # Frontend environment variables
-      VITE_API_URL: http://127.0.0.1:3000
+      VITE_API_URL: http://127.0.0.1:3001
+      VITE_HMR_HOST: localhost
+      VITE_HMR_PORT: 5173
+      VITE_HMR_PROTOCOL: ws
       VITE_APP_NAME: ICS System
     depends_on:
       backend:
