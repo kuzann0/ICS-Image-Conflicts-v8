@@ -104,7 +104,6 @@ function Navbar({ activePanel, setActivePanel }) {
                         title="Logout"
                         aria-label="Logout"
                     >
-                        <span className={styles.logoutIcon}>🚪</span>
                         {!collapsed && <span className={styles.logoutLabel}>Logout</span>}
                     </button>
                 </div>

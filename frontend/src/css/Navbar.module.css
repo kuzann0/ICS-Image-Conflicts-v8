@@ -254,49 +254,52 @@ ul li {
   }
 }
 
-/* Collapse Button Overlay - Fixed Position */
+/* Collapse Button Overlay - Top Right Position */
 .collapseBtnOverlay {
   position: absolute;
-  bottom: 180px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 48px;
-  height: 48px;
+  top: 52%;
+  right: -24px;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
   padding: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(102, 126, 234, 0.85) 100%);
+  border: 2.5px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
   border-radius: 50%;
   cursor: pointer;
   font-size: 12px;
   font-weight: 600;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
-  z-index: 500;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .collapseBtnOverlay:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateX(-50%) scale(1.12);
-  box-shadow: 0 6px 24px rgba(102, 126, 234, 0.4), 0 0 20px rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 1) 0%, rgba(102, 126, 234, 0.95) 100%);
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.7), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.4),
+              0 0 24px rgba(102, 126, 234, 0.6);
 }
 
 .collapseBtnOverlay:active {
-  transform: translateX(-50%) scale(0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50%) scale(0.92);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 /* Arrow Icon */
 .arrow {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   position: relative;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -305,29 +308,30 @@ ul li {
 .arrow::after {
   content: '';
   position: absolute;
-  width: 12px;
-  height: 2px;
+  width: 14px;
+  height: 2.5px;
   background: #ffffff;
   top: 50%;
-  left: 4px;
-  border-radius: 1px;
+  left: 5px;
+  border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
 }
 
 .arrow::before {
-  transform: translateY(-6px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .arrow::after {
-  transform: translateY(6px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .collapseBtnOverlay.collapsed .arrow::before {
-  transform: translateY(-6px) rotate(45deg);
+  transform: translateY(-7px) rotate(45deg);
 }
 
 .collapseBtnOverlay.collapsed .arrow::after {
-  transform: translateY(6px) rotate(-45deg);
+  transform: translateY(7px) rotate(-45deg);
 }
 
 /* Logout Button */
@@ -376,6 +380,7 @@ ul li {
 }
 
 .logoutLabel {
+  color: var(--color-text-light);
   font-size: 12px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -620,20 +625,24 @@ ul li {
     gap: 6px;
   }
 
-  .collapseBtnOverlay,
+  .collapseBtnOverlay {
+    width: 46px;
+    height: 46px;
+  }
+
   .logoutBtn {
     height: 40px;
     font-size: 11px;
   }
 
   .arrow {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
 
   .arrow::before,
   .arrow::after {
-    width: 10px;
+    width: 12px;
     height: 2px;
   }
 }
