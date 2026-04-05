@@ -82,20 +82,21 @@ function Navbar({ activePanel, setActivePanel }) {
                                 </ul>
                             </div>
                         </div>
+
+                        {/* Collapse Button Overlay - Fixed Position */}
+                        <button
+                            className={`${styles.collapseBtnOverlay} ${collapsed ? styles.collapsed : ""}`}
+                            onClick={() => setCollapsed(!collapsed)}
+                            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                            aria-label="Toggle sidebar"
+                        >
+                            <span className={styles.arrow}></span>
+                        </button>
                     </div>
                 </div>
 
-                {/* Collapse Button with Arrow */}
+                {/* Bottom Controls - Logout Only */}
                 <div className={styles.bottomControls}>
-                    <button
-                        className={`${styles.collapseBtn} ${collapsed ? styles.collapsed : ""}`}
-                        onClick={() => setCollapsed(!collapsed)}
-                        title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-                        aria-label="Toggle sidebar"
-                    >
-                        <span className={styles.arrow}></span>
-                    </button>
-
                     {/* Logout Button */}
                     <button
                         className={styles.logoutBtn}

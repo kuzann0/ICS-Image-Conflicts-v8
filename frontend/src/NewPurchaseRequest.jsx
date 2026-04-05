@@ -60,7 +60,7 @@ function NewPurchaseRequest() {
                     <input
                         id="prNameInput"
                         type="text"
-                        placeholder="2026-01-001"
+                        placeholder="e.g. 2026-01-001"
                         value={prName}
                         onChange={(e) => {
                             setPrName(e.target.value);
